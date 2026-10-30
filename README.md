@@ -6,6 +6,13 @@ Proyecto de prueba técnica en Python, Tkinter/ttk y SQLite. **MVP funcional de 
 
 ## Ejecutar en Windows / PowerShell
 
+Para obtener el proyecto desde GitHub:
+
+```powershell
+git clone https://github.com/Eve1254/inventario-ventas-mvp.git
+cd inventario-ventas-mvp
+```
+
 Abre PowerShell en la carpeta del proyecto. Entorno comprobado: Python 3.14.3 con Tk 8.6.15 y SQLite 3.50.4. No hay paquetes externos que instalar.
 
 ```powershell
