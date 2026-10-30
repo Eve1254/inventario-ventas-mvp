@@ -1,0 +1,6 @@
+codigo;nombre;precio;stock
+etl001;Cuaderno;10,50;6
+ ETL001 ;Código duplicado;10,50;6
+ETL003;Precio incorrecto;0;2
+ETL004;Stock incorrecto;1,20;-3
+ETL005;Producto válido;2,50;4
