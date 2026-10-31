@@ -116,3 +116,5 @@ Artefactos finales:
 | InventarioVentas-1.0.0-Windows-x64.zip | 14007590 | `02b07d626dc4a3067557efa71be74559611c82918a922c7609fbc48e208ebbc9` |
 
 No se utilizó la base local de la demostración para las cargas de prueba. No se certifica inspección visual mediante capturas ni ejecución en un segundo equipo o Windows 10. La instalación de prueba se desinstaló; sus datos aislados y evidencia permanecen dentro de `build/`, excluido de Git.
+
+Publicación: [Release v1.0.0](https://github.com/Eve1254/inventario-ventas-mvp/releases/tag/v1.0.0), asociada al commit `12f132c`. Instalador, ZIP y SHA256SUMS.txt se descargaron sin autenticación y se compararon con los archivos locales: coinciden tamaños y SHA-256.
