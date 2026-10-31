@@ -91,3 +91,28 @@ La revisión independiente ejecutó las 101 pruebas iniciales de ETL y no encont
 Geometría: a 1120×760 la tabla de preview mide 232 px de alto; a 1020×680 mide 152 px y muestra dos filas completas, con desplazamiento vertical para el resto. Los controles principales, tabla y detalle quedaron dentro de la ventana. No se afirma revisión visual mediante capturas; la limitación anterior permanece. Todas las cargas de ensayo usaron bases temporales y no hubo cambios de esquema.
 
 Entrega ETL: ZIP de 56 archivos extraído en carpeta temporal; 102 pruebas aprobadas (14,666 s), exit code 0. Después se comprobó el flujo integrado con cinco pestañas: CSV con cuatro errores, CSV válido con dos nuevos, carga confirmada, informe con estado Cargado, venta de 31,50 y revisión del mismo CSV con dos existentes y stock restante tres. Ninguna carga de ensayo utilizó la base local.
+
+## Distribución Windows 1.0.0 — 30 de octubre de 2026
+
+Suite completa: **107 pruebas aprobadas**, ninguna omitida, exit code 0 (11,940 s). Las cinco adicionales comprueban la ruta fuente, la ruta de datos del ejecutable, el fallback sin LOCALAPPDATA válido, conservación de SQLite y diagnóstico de interfaz lista frente a error de inicialización.
+
+Construcción real con Python 3.14.3 x64, PyInstaller 6.22.3 e Inno Setup 7.1.1 x64 en Windows 11. Compilador descargado desde su publicación oficial y validado mediante Authenticode de Pyrsys B.V. El producto final no está firmado digitalmente.
+
+El script `scripts/smoke_windows.py` ejecutó los artefactos finales:
+
+- Extracción del ZIP con CRC válido en ruta con espacios y acentos.
+- Arranque y reinicio del ejecutable con perfil LOCALAPPDATA aislado y PATH sin Python.
+- Comprobación de la señal de interfaz inicializada correspondiente al PID actual, emitida después de construir y mostrar la ventana y procesar su geometría.
+- Instalación por usuario en directorio de prueba, igualdad del ejecutable instalado y el portable, reinstalación y desinstalación.
+- Conservación del producto de prueba y de su precio/stock después de todo el recorrido.
+
+La revisión independiente no encontró pérdida de datos ni filtración de base/credenciales. Señaló que la primera versión del smoke solo probaba tablas y proceso vivo; se corrigió exigiendo el diagnóstico de interfaz lista y se añadieron pruebas de éxito y fallo. El smoke reforzado rechazó el binario anterior y aprobó el recompilado. Evidencia local: `build/smoke/926b78764e3147178e4a7dcd36aa9582/resultado.json`.
+
+Artefactos finales:
+
+| Archivo | Bytes | SHA-256 |
+| --- | ---: | --- |
+| InventarioVentas-1.0.0-Windows-x64-Setup.exe | 12022488 | `0ba1ae2296bc42edcf722d22de8ffd468f7da7baee2a04887d11392433d00b48` |
+| InventarioVentas-1.0.0-Windows-x64.zip | 14007590 | `02b07d626dc4a3067557efa71be74559611c82918a922c7609fbc48e208ebbc9` |
+
+No se utilizó la base local de la demostración para las cargas de prueba. No se certifica inspección visual mediante capturas ni ejecución en un segundo equipo o Windows 10. La instalación de prueba se desinstaló; sus datos aislados y evidencia permanecen dentro de `build/`, excluido de Git.

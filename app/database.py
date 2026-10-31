@@ -5,10 +5,10 @@ from contextlib import contextmanager
 from pathlib import Path
 import sqlite3
 
+from app.paths import get_database_path
 
-# __file__ fija la ruta aunque se ejecute Python desde otra carpeta.
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_DB_PATH = PROJECT_ROOT / "data" / "inventario.db"
+
+DEFAULT_DB_PATH = get_database_path()
 SCHEMA_VERSION = 1
 
 CREATE_PRODUCTS = """

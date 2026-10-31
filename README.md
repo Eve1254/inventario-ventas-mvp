@@ -4,6 +4,14 @@ Proyecto de prueba técnica en Python, Tkinter/ttk y SQLite. **MVP funcional de 
 
 **Valor agregado:** ETL de productos desde CSV con normalización, vista previa, errores por fila, carga transaccional de códigos nuevos e informe exportable.
 
+## Descargar la aplicación para Windows
+
+[Descargar instalador Windows x64](https://github.com/Eve1254/inventario-ventas-mvp/releases/download/v1.0.0/InventarioVentas-1.0.0-Windows-x64-Setup.exe) · [ZIP sin instalación](https://github.com/Eve1254/inventario-ventas-mvp/releases/download/v1.0.0/InventarioVentas-1.0.0-Windows-x64.zip) · [Versión y sumas SHA-256](https://github.com/Eve1254/inventario-ventas-mvp/releases/latest)
+
+El instalador crea accesos en Inicio y, si lo seleccionas, en el escritorio. No necesitas instalar Python. El ZIP debe extraerse completo antes de abrir `InventarioVentas.exe`. La versión descargable guarda su base en `%LOCALAPPDATA%\InventarioVentas\inventario.db`, separada de los archivos del programa, y empieza con un catálogo vacío. Actualizar o desinstalar conserva los datos.
+
+Consulta la [guía de instalación, respaldo y construcción](docs/aplicacion_windows.md). Esta primera entrega no tiene firma digital de editor. El código fuente se ejecuta con los pasos siguientes.
+
 ## Ejecutar en Windows / PowerShell
 
 Para obtener el proyecto desde GitHub:
@@ -80,7 +88,7 @@ Se actualizan al guardar/eliminar productos, confirmar una venta, entrar en la p
 
 Las pruebas crean bases temporales; no cambian `data/inventario.db`. Las pruebas de interfaz requieren Tkinter y una sesión gráfica disponible. La suite cubre los tres días, incluidos rollback tras escrituras parciales y fallo al confirmar, concurrencia real, bloqueo de SQLite, CSV, alertas y recorridos con Tkinter. Consulta los resultados en [Pruebas finales](docs/pruebas_finales.md).
 
-Resultado actual con ETL: **102 pruebas aprobadas, ninguna omitida**. En [examples](examples/README.md) hay CSV ficticios de exportación e importación.
+Resultado actual: **107 pruebas aprobadas, ninguna omitida**, incluyendo rutas, persistencia y diagnóstico de inicio de la versión Windows. En [examples](examples/README.md) hay CSV ficticios de exportación e importación.
 
 ## Importar productos mediante ETL
 
@@ -132,7 +140,7 @@ data/inventario.db      Base creada al ejecutar; excluida de Git
 
 El catálogo se vuelve a consultar al abrir, actualizar, guardar cambios o cambiar de pestaña; no hay sincronización automática con otros equipos. La búsqueda literal ignora mayúsculas mediante `casefold()` de Python y conserva los acentos: `CAFÉ` encuentra `Café`, pero `cafe` sin tilde no equivale a `café`. Para este catálogo pequeño se filtran las filas después de leer SQLite; una implementación para catálogos grandes necesitaría búsqueda y paginación en la base.
 
-El MVP trabaja con unidades enteras y una moneda, sin impuestos, descuentos, devoluciones, pagos reales, facturación fiscal, sincronización de tiendas ni autenticación. No incluye instalador `.exe`; se ejecuta con Python. Los carritos pendientes se pierden si se cierra o falla el proceso, pero las ventas confirmadas permanecen en SQLite. Las fechas se guardan en UTC con zona explícita y se muestran en la hora local del equipo.
+El MVP trabaja con unidades enteras y una moneda, sin impuestos, descuentos, devoluciones, pagos reales, facturación fiscal, sincronización de tiendas ni autenticación. Se puede ejecutar desde Python o usar la distribución Windows x64. Los carritos pendientes se pierden si se cierra o falla el proceso, pero las ventas confirmadas permanecen en SQLite. Las fechas se guardan en UTC con zona explícita y se muestran en la hora local del equipo.
 
 La versión de esquema 1 es una actualización aditiva del esquema original. Cambios de estructura futuros deben incorporar migraciones explícitas; `IF NOT EXISTS` por sí solo no actualiza columnas de tablas existentes. La revisión visual por capturas depende del runtime del equipo; sus limitaciones se documentan por separado de las pruebas funcionales.
 
